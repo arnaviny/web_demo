@@ -1,0 +1,71 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2a2a2a; /* שחור-אפור כהה */
+    color: #e6e6e6; /* אפור בהיר */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1a1a1a; /* שחור כהה */
+    color: #ffcc00; /* צהוב זוהר */
+    text-align: center;
+    padding: 1rem 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333; /* אפור */
+    padding: 0.5rem 0;
+}
+
+nav a {
+    color: #ffcc00; /* צהוב זוהר */
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #ff9900; /* כתום */
+    text-decoration: underline;
+}
+
+section {
+    width: 70%;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #444; /* אפור בינוני */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+section div {
+    border-bottom: 1px solid #666; /* אפור כהה */
+    padding: 0.5rem 0;
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+input[type="text"] {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    width: 70%;
+    background-color: #e6e6e6; /* אפור בהיר */
+    border: none;
+    color: #333;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-color: #ff9900; /* כתום */
+    border: none;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffcc00; /* צהוב זוהר */
+}
