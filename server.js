@@ -1,30 +1,42 @@
 const express = require('express');
 const { Pool } = require('pg');
-const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
+// Connection to PostgreSQL
 const pool = new Pool({
   user: 'postgres',
-  host: 'localhost',
-  database: 'postgres',
-  password: '234321ab', // החלף עם הסיסמה שלך
+  host: 'your_docker_container_ip', // Update this with your Docker PostgreSQL container IP
+  database: 'bookstore-container',
+  password: '234321ab', // Replace with your password, if set
   port: 5432,
 });
 
-app.use(cors()); // מאפשר לקוד הלקוח לתקשר עם השרת
-app.use(express.static('public')); // לשימוש בקבצים הסטטיים
+app.use(express.json());
+app.use(express.static('public'));
 
+// Fetch all books that are in stock
 app.get('/books', async (req, res) => {
   try {
-    const { rows } = await pool.query('SELECT * FROM books');
-    res.json(rows);
-  } catch (error) {
-    console.error('Error fetching books:', error);
-    res.status(500).send('Internal Server Error');
+    const result = await pool.query("SELECT author_name, book_name, rating FROM books WHERE in_stock='t'");
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Fetch the highest rated book that's in stock
+app.get('/bestbook', async (req, res) => {
+  try {
+    const result = await pool.query("SELECT author_name, book_name, rating FROM books WHERE in_stock='t' ORDER BY rating DESC LIMIT 1");
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

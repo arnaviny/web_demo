@@ -4,34 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars Books</title>
+    <title>Books</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>Star Wars Books</h1>
+        <h1>Star Wars Book'S</h1>
         <nav>
-            <a href="index.html">Home</a> |
-            <a href="search.html">Search</a> |
-            <a href="categories.html">Categories</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="categories.html">categories</a></li>
+                <li><a href="search.html">search</a></li>
+            </ul>
         </nav>
     </header>
+    <h2>Best Rated Book:</h2>
+    <div id="bestBookContainer"></div>
 
-    <main>
-        <section>
-            <h2>Available Books</h2>
-            <div id="bookContainer">
-                <!-- The books will be dynamically loaded and displayed here -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Star Wars Books. All rights reserved.</p>
-    </footer>
-
+    <h2>All Books in Stock:</h2>
+    <div id="bookContainer"></div>
 </body>
 
 </html>
