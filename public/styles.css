@@ -68,3 +68,58 @@ button:hover {
 .clickable:hover {
     background-color: #333333;
 }
+
+#booksSection, #categoriesSection {
+    max-width: 1000px;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.book {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 220px;
+    height: 320px; /* הוספתי גובה קבוע לתיבה */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+}
+
+.book h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.book p {
+    margin: 5px 0;
+}
+#bestRatedBook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 320px; /* או כל גובה אחר שתרצה */
+}
+
+.book h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    text-align: center; /* הוספתי שורה זו */
+}
+#bookContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#bestBookContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
