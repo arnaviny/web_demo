@@ -14,16 +14,16 @@ header {
 
 nav {
     background-color: #333333;
-    overflow: hidden;
+    text-align: center;
+    padding: 10px 0;
 }
 
 nav a {
-    float: left;
-    display: block;
     color: #FFD700;
-    text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 nav a:hover {
@@ -69,7 +69,7 @@ button:hover {
     background-color: #333333;
 }
 
-#booksSection, #categoriesSection {
+#booksSection, #categoriesSection, #bookContainer, #bestBookContainer {
     max-width: 1000px;
     margin: 20px auto;
     text-align: center;
@@ -83,7 +83,7 @@ button:hover {
     padding: 10px;
     margin: 10px;
     width: 220px;
-    height: 320px; /* הוספתי גובה קבוע לתיבה */
+    height: 320px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     display: inline-flex;
     flex-direction: column;
@@ -95,69 +95,18 @@ button:hover {
 .book h3 {
     font-size: 1.2em;
     margin-top: 0;
+    text-align: center;
 }
 
 .book p {
     margin: 5px 0;
-}
-#bestRatedBook {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 320px; /* או כל גובה אחר שתרצה */
-}
-
-.book h3 {
-    font-size: 1.2em;
-    margin-top: 0;
-    text-align: center; /* הוספתי שורה זו */
-}
-#bookContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-#bestBookContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-nav {
-    background-color: #333333;
     text-align: center;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-}
-
-nav li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav a {
-    color: #FFD700;
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-nav a:hover {
-    background-color: #111111;
 }
 
 .in-stock {
-    border: 2px solid green;
+    border: 15px solid red;
 }
 
 .out-of-stock {
-    border: 2px solid red;
+    border: 15px solid green;
 }

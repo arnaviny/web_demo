@@ -1,13 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     fetchBooksAndDisplay();
     fetchBestRatedBook();
-    fetchCategoriesAndDisplay();
-
-    // Move the event listener attachment inside the DOMContentLoaded event
-    document.getElementById('searchButton').addEventListener('click', function() {
-        const query = document.getElementById('searchInput').value;
-        fetchBooksByQuery(query);
-    });
 });
 
 function fetchBooksAndDisplay() {
@@ -19,15 +12,11 @@ function fetchBooksAndDisplay() {
             return response.json();
         })
         .then(books => {
-            if (Array.isArray(books)) {
-                const bookContainer = document.getElementById('bookContainer');
-                books.forEach(book => {
-                    const bookDiv = createBookElement(book);
-                    bookContainer.appendChild(bookDiv);
-                });
-            } else {
-                console.error("Expected an array of books, but got:", books);
-            }
+            const bookContainer = document.getElementById('bookContainer');
+            books.forEach(book => {
+                const bookDiv = createBookElement(book);
+                bookContainer.appendChild(bookDiv);
+            });
         })
         .catch(error => console.error('Error fetching books:', error));
 }
@@ -59,8 +48,12 @@ function createBookElement(book) {
     rating.textContent = `Rating: ${book.rating}/5`;
     bookDiv.appendChild(rating);
 
+    // Highlight the stock status
+    highlightStockStatus(book, bookDiv);
+
     return bookDiv;
 }
+
 
 function fetchBooksByQuery(query) {
     fetch(`/search?nameOrAuthor=${query}`)
@@ -75,19 +68,3 @@ function fetchBooksByQuery(query) {
         })
         .catch(error => console.error('Error fetching search results:', error));
 }
-
-function fetchCategoriesAndDisplay() {
-    fetch('/categories')
-        .then(response => response.json())
-        .then(categories => {
-            const categoriesSection = document.getElementById('categoriesSection');
-            categories.forEach(category => {
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'category';
-                categoryDiv.textContent = category.name;
-                categoriesSection.appendChild(categoryDiv);
-            });
-        })
-        .catch(error => console.error('Error fetching categories:', error));
-}
-

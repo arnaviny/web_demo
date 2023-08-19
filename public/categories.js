@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetchCategoriesAndDisplay();
 });
 
+
 function fetchCategoriesAndDisplay() {
     fetch('/categories')
         .then(response => response.json())
@@ -20,7 +21,6 @@ function fetchCategoriesAndDisplay() {
         })
         .catch(error => console.error('Error fetching categories:', error));
 }
-
 
 function fetchBooksByCategory(categoryId) {
     fetch(`/booksByCategory/${categoryId}`)
@@ -54,3 +54,4 @@ function createBookElement(book) {
 
     return bookDiv;
 }
+
