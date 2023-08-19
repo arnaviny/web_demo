@@ -56,5 +56,23 @@ app.get('/search', async (req, res) => {
 
 
 app.get('/categories', (req, res) => {
-  // Fetch categories from the database and send them as a response
+  const query = 'SELECT * FROM public.categories';
+  pool.query(query, (error, results) => {
+      if (error) {
+          throw error;
+      }
+      res.json(results.rows);
+  });
 });
+
+app.get('/booksByCategory/:categoryId', (req, res) => {
+  const categoryId = req.params.categoryId;
+  const query = 'SELECT * FROM public.books WHERE category_id = $1';
+  pool.query(query, [categoryId], (error, results) => {
+      if (error) {
+          throw error;
+      }
+      res.json(results.rows);
+  });
+});
+
