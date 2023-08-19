@@ -42,3 +42,19 @@ app.get('/bestbook', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+app.get('/search', async (req, res) => {
+  const query = req.query.query;
+  try {
+      const result = await pool.query("SELECT author_name, book_name, rating FROM books WHERE in_stock='t' AND (LOWER(author_name) LIKE LOWER($1) OR LOWER(book_name) LIKE LOWER($1))", [`%${query}%`]);
+      res.json(result.rows);
+  } catch (err) {
+      console.error("Error querying for books:", err);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.get('/categories', (req, res) => {
+  // Fetch categories from the database and send them as a response
+});
