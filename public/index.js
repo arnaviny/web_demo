@@ -50,6 +50,8 @@ function createBookElement(book) {
 
     // Highlight the stock status
     highlightStockStatus(book, bookDiv);
+    addHoverEffect(book, bookDiv);
+
 
     return bookDiv;
 }

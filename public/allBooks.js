@@ -3,13 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function fetchAllBooksAndDisplay() {
-    fetch('/allbooks') // Assuming you have an endpoint named '/allbooks' that returns all books
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
+    fetch('/allbooks')
+        .then(response => response.json())
         .then(books => {
             const booksContainer = document.getElementById('allBooksContainer');
             books.forEach(book => {
@@ -38,6 +33,8 @@ function createBookElement(book) {
 
     // Highlight the stock status
     highlightStockStatus(book, bookDiv);
+    addHoverEffect(book, bookDiv);
+
 
     return bookDiv;
 }

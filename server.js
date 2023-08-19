@@ -19,7 +19,7 @@ app.use(express.static('public'));
 // Fetch all books that are in stock
 app.get('/books', async (req, res) => {
   try {
-    const result = await pool.query("SELECT author_name, book_name, rating FROM books WHERE in_stock='t'");
+    const result = await pool.query("SELECT author_name, book_name, rating, in_stock FROM books WHERE in_stock='t'");
     res.json(result.rows);
   } catch (err) {
     console.error("Error querying for books:", err);

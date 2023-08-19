@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     fetchCategoriesAndDisplay();
 });
 
-
 function fetchCategoriesAndDisplay() {
     fetch('/categories')
         .then(response => response.json())
@@ -12,7 +11,7 @@ function fetchCategoriesAndDisplay() {
             categories.forEach(category => {
                 const categoryDiv = document.createElement('div');
                 categoryDiv.className = 'category clickable';
-                categoryDiv.textContent = category.category_name; // Use category_name instead of name
+                categoryDiv.textContent = category.category_name;
                 categoryDiv.addEventListener('click', function() {
                     fetchBooksByCategory(category.id);
                 });
@@ -31,7 +30,6 @@ function fetchBooksByCategory(categoryId) {
             books.forEach(book => {
                 const bookDiv = createBookElement(book);
                 booksSection.appendChild(bookDiv);
-                highlightStockStatus(book, bookDiv);
             });
         })
         .catch(error => console.error('Error fetching books by category:', error));
@@ -39,14 +37,11 @@ function fetchBooksByCategory(categoryId) {
 
 function createBookElement(book) {
     const bookDiv = document.createElement('div');
-    highlightStockStatus(book, bookDiv);
     bookDiv.className = 'book';
 
     const title = document.createElement('h3');
     title.textContent = book.book_name;
     bookDiv.appendChild(title);
-    highlightStockStatus(book, bookDiv);
-
 
     const author = document.createElement('p');
     author.textContent = `Author: ${book.author_name}`;
@@ -56,6 +51,10 @@ function createBookElement(book) {
     rating.textContent = `Rating: ${book.rating}/5`;
     bookDiv.appendChild(rating);
 
+    // Highlight the stock status
+    highlightStockStatus(book, bookDiv);
+    addHoverEffect(book, bookDiv);
+
+
     return bookDiv;
 }
-
