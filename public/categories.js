@@ -7,10 +7,11 @@ function fetchCategoriesAndDisplay() {
         .then(response => response.json())
         .then(categories => {
             const categoriesList = document.getElementById('categoriesList');
+            categoriesList.innerHTML = ''; // Clear previous categories
             categories.forEach(category => {
                 const categoryDiv = document.createElement('div');
                 categoryDiv.className = 'category clickable';
-                categoryDiv.textContent = category.name;
+                categoryDiv.textContent = category.category_name; // Use category_name instead of name
                 categoryDiv.addEventListener('click', function() {
                     fetchBooksByCategory(category.id);
                 });
@@ -20,8 +21,9 @@ function fetchCategoriesAndDisplay() {
         .catch(error => console.error('Error fetching categories:', error));
 }
 
+
 function fetchBooksByCategory(categoryId) {
-    fetch(`/booksByCategory?categoryId=${categoryId}`)
+    fetch(`/booksByCategory/${categoryId}`)
         .then(response => response.json())
         .then(books => {
             const booksSection = document.getElementById('booksSection');
