@@ -31,6 +31,7 @@ function fetchBooksByCategory(categoryId) {
             books.forEach(book => {
                 const bookDiv = createBookElement(book);
                 booksSection.appendChild(bookDiv);
+                highlightStockStatus(book, bookDiv);
             });
         })
         .catch(error => console.error('Error fetching books by category:', error));
@@ -38,11 +39,14 @@ function fetchBooksByCategory(categoryId) {
 
 function createBookElement(book) {
     const bookDiv = document.createElement('div');
+    highlightStockStatus(book, bookDiv);
     bookDiv.className = 'book';
 
     const title = document.createElement('h3');
     title.textContent = book.book_name;
     bookDiv.appendChild(title);
+    highlightStockStatus(book, bookDiv);
+
 
     const author = document.createElement('p');
     author.textContent = `Author: ${book.author_name}`;

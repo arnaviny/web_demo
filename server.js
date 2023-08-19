@@ -76,3 +76,12 @@ app.get('/booksByCategory/:categoryId', (req, res) => {
   });
 });
 
+app.get('/allbooks', (req, res) => {
+  const query = 'SELECT * FROM public.books';
+  pool.query(query, (error, results) => {
+      if (error) {
+          throw error;
+      }
+      res.json(results.rows);
+  });
+});
