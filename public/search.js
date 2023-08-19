@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Attach the event listener for the search button inside the DOMContentLoaded event
+    // Attach event listener to the search button
     document.getElementById('searchButton').addEventListener('click', function() {
         const query = document.getElementById('searchInput').value;
         fetchBooksByQuery(query);
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function fetchBooksByQuery(query) {
-    fetch(`/search?nameOrAuthor=${query}`)
+    fetch(`/search?query=${query}`)
         .then(response => response.json())
         .then(books => {
             const resultsDiv = document.getElementById('searchResults');
