@@ -120,4 +120,3 @@ ALTER TABLE ONLY public.books
 --
 -- PostgreSQL database dump complete
 --
-

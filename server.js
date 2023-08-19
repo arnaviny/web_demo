@@ -5,11 +5,12 @@ const PORT = 3000;
 
 // Connection to PostgreSQL
 const pool = new Pool({
+  host: 'localhost',
   user: 'postgres',
-  host: 'your_docker_container_ip', // Update this with your Docker PostgreSQL container IP
-  database: 'bookstore-container',
-  password: '234321ab', // Replace with your password, if set
-  port: 5432,
+  password: 'your_password',
+  database: 'mydb',
+  port: 5432
+  
 });
 
 app.use(express.json());
@@ -21,10 +22,11 @@ app.get('/books', async (req, res) => {
     const result = await pool.query("SELECT author_name, book_name, rating FROM books WHERE in_stock='t'");
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
+    console.error("Error querying for books:", err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 // Fetch the highest rated book that's in stock
 app.get('/bestbook', async (req, res) => {
